@@ -1,0 +1,25 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Profil | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="user" id="id_user" value='{{ user.id }}'>
+
+      {% for field in form %}
+        {% if field is not form.user %}
+          <p>
+            {{ field.label }}
+            {{ field }}
+            {{ field.errors }}
+          </p>
+        {% endif %}
+      {% endfor %}
+
+    <input type="submit" value="Update">
+  </form>
+{% endblock content %}

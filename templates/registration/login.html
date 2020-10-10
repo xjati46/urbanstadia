@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+
+{% block title %}
+  <title>Login Page | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <div>
+    <h1>Silakan Login</h1>
+    <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" value="Login">
+      <input type="hidden" name="next" value="{{ next }}">
+    </form>
+    <br>
+    <div>
+      <a href="{% url 'registration' %}">Registrasi Akun Baru</a>
+    </div>
+  </div>
+
+
+{% endblock content %}

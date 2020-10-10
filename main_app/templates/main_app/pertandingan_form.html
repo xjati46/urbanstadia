@@ -1,0 +1,13 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Buat Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Buat">
+  </form>
+{% endblock content %}

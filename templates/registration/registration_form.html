@@ -1,0 +1,168 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>Ubah Data User | Sekolah Akademia</title>
+{% endblock title %}
+
+{% block content %}
+  <div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-6 d-none d-lg-block bg-register-image" style="background-image: url({% static 'home_app/img/kids6.jpg' %});"></div>
+          <div class="col-lg-6">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Ubah Data User</h1>
+              </div>
+              <hr>
+              <form class="user" method="post">
+                {% csrf_token %}
+                {{ form.errors }}
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="username" id="id_username" class="form-control form-control-user" placeholder="{{ user.username }}" readonly>
+                    {{ form.username.errors }}
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="email" name="email" id="id_email" class="form-control form-control-user" placeholder="{{ user.email }}" readonly>
+                    {{ form.email.errors }}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="nama_lengkap" id="id_nama_lengkap" class="form-control form-control-user"
+                    {% if user.nama_lengkap %}
+                      value="{{ user.nama_lengkap }}" readonly
+                    {% else %}
+                      placeholder="Nama Lengkap"
+                    {% endif %}
+                  >
+                  {{ form.nama_lengkap.errors }}
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="nama_panggilan" id="id_nama_panggilan" class="form-control form-control-user"
+                      {% if user.nama_panggilan %}
+                        value="{{ user.nama_panggilan }}" readonly
+                      {% else %}
+                        placeholder="Nama Panggilan"
+                      {% endif %}
+                    >
+                    {{ form.nama_panggilan.errors }}
+                  </div>
+
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    {% if user.jenis_kelamin == 'Laki-laki' %}
+                    <input type="radio" name="jenis_kelamin" id="id_jenis_kelamin" value="Laki-laki" checked disabled>
+                    <input type="hidden" name="jenis_kelamin" id="id_jenis_kelamin" value="Laki-laki">
+                    <label for="jenis_kelamin">Laki-laki</label>
+                    <br>
+                    <input type="radio" disabled>
+                    <label for="jenis_kelamin">Perempuan</label>
+
+                    {% elif user.jenis_kelamin == 'Perempuan' %}
+                    <input type="radio" disabled>
+                    <label for="jenis_kelamin">Laki-laki</label>
+                    <br>
+                    <input type="radio" name="jenis_kelamin" id="id_jenis_kelamin" value="Perempuan" checked disabled>
+                    <input type="hidden" name="jenis_kelamin" id="id_jenis_kelamin" value="Perempuan">
+                    <label for="jenis_kelamin">Perempuan</label>
+
+                    {% else %}
+                    <input type="radio" name="jenis_kelamin" id="id_jenis_kelamin" value="Laki-laki">
+                    <label for="jenis_kelamin">Laki-laki</label>
+                    <br>
+                    <input type="radio" name="jenis_kelamin" id="id_jenis_kelamin" value="Perempuan">
+                    <label for="jenis_kelamin">Perempuan</label>
+                    {% endif %}
+
+                    {{ form.jenis_kelamin.errors }}
+                  </div>
+
+                </div>
+
+                <div class="form-group row mt-n3">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="jenis_id" id="id_jenis_id" class="form-control form-control-user"
+                      {% if user.jenis_id %}
+                        value="{{ user.jenis_id }}" readonly
+                      {% else %}
+                        placeholder="Jenis ID"
+                      {% endif %}
+                    >
+                    {{ form.jenis_id.errors }}
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="nomor_id" id="id_nomor_id" class="form-control form-control-user"
+                      {% if user.nomor_id %}
+                        value="{{ user.nomor_id }}" readonly
+                      {% else %}
+                        placeholder="Nomor ID"
+                      {% endif %}
+                    >
+                    {{ form.nomor_id.errors }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input type="text" name="tempat_lahir" id="id_tempat_lahir" class="form-control form-control-user"
+                      {% if user.tempat_lahir %}
+                        value="{{ user.tempat_lahir }}" readonly
+                      {% else %}
+                        placeholder="Tempat Lahir"
+                      {% endif %}
+                    >
+                    {{ form.tempat_lahir.errors }}
+                  </div>
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    {% if user.tanggal_lahir %}
+                      <input name="tanggal_lahir" id="id_tanggal_lahir" class="form-control form-control-user" type="text" value="{{ user.tanggal_lahir|date:"Y-m-d" }}" readonly>
+                    {% else %}
+                      <input name="tanggal_lahir" id="id_tanggal_lahir" class="form-control form-control-user" type="date" placeholder="Tanggal Lahir">
+                      {{ form.tanggal_lahir.errors }}
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="alamat_tinggal" id="id_alamat_tinggal" class="form-control form-control-user"
+                    {% if user.alamat_tinggal %}
+                      value="{{ user.alamat_tinggal }}"
+                    {% else %}
+                      placeholder="Alamat Tinggal"
+                    {% endif %}
+                  >
+                  {{ form.alamat_tinggal.errors }}
+                </div>
+
+                <div class="form-group">
+                  <input type="text" name="nomor_ponsel" id="id_nomor_ponsel" class="form-control form-control-user"
+                    {% if user.nomor_ponsel %}
+                      value="{{ user.nomor_ponsel }}"
+                    {% else %}
+                      placeholder="Nomor Ponsel"
+                    {% endif %}
+                  >
+                  {{ form.nomor_ponsel.errors }}
+                </div>
+
+                <input type="submit" value="Ubah" class="btn btn-success btn-user btn-block">
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="{% url 'home-app:profile' %}">Kembali ke halaman Profil?</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% block title %}{% endblock title %}
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="{% url 'main-app:index' %}">Home</a></li>
+        <li><a href="{% url 'main-app:profile' %}">Profil</a></li>
+        <li><a href="{% url 'main-app:pertandingan' %}">Beranda Pertandingan</a></li>
+        <li><a href="{% url 'main-app:pertandingan-create' %}">Buat Pertandingan</a></li>
+        <li><a href="#">Histori Pertandingan</a></li>
+        <li><a href="#">Pesan</a></li>
+        <li><a href="#">Notifikasi</a></li>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+      </ul>
+    </nav>
+    {% block content %}{% endblock content %}
+  </body>
+</html>

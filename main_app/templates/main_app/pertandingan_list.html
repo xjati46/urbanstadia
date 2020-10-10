@@ -1,0 +1,32 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Daftar Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <h1>Daftar Pertandingan</h1>
+
+  <ul>
+    {% for i in pertandingan_list %}
+      <li>{{i}}</li>
+    {% endfor %}
+  </ul>
+
+  <hr>
+
+  <!-- EKSPERIMEN -->
+
+  <h3>cabor favorit: {{user.userprofile.cabor_favorit.all}}</h3>
+
+  {% for i in user.userprofile.cabor_favorit.all %}
+
+    <h3>{{i.id}} | {{i}}</h3>
+
+
+  {% endfor %}
+
+  <!-- EKSPERIMEN -->
+
+
+{% endblock content %}
