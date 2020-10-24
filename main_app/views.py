@@ -5,7 +5,7 @@ from django.views.generic import (
 from .forms import *
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import UserProfile, Pertandingan
+from .models import UserProfile, Pertandingan, CabangOlahraga, PesertaPertandingan
 
 
 class IndexView(LoginRequiredMixin, TemplateView):
@@ -36,19 +36,34 @@ class UserProfileUpdateView(LoginRequiredMixin, UpdateView):
     model = UserProfile
 
 
-class PertandinganListView(LoginRequiredMixin, ListView):
-    template_name = 'main_app/pertandingan_list.html'
-    model = Pertandingan
-    #
-    # def get_queryset(self):
-    #     set = []
-    #     for i in self.request.user.userprofile.cabor_favorit:
-    #         set.append(i.id)
-    #     return Pertandingan.objects.filter(cabor__in=set)
+class CaborListView(LoginRequiredMixin, TemplateView):
+    template_name = 'main_app/cabor_list.html'
+
+
+class CaborDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'main_app/cabor_detail.html'
+    model = CabangOlahraga
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['pertandingan_list'] = Pertandingan.objects.filter(cabor=self.kwargs['pk'])
+        return context
 
 
 class PertandinganCreateView(LoginRequiredMixin, CreateView):
     form_class = PertandinganForm
-    success_url = reverse_lazy('main-app:pertandingan')
+    success_url = reverse_lazy('main-app:cabor')
     template_name = 'main_app/pertandingan_form.html'
     model = Pertandingan
+
+
+class PertandinganDetailView(LoginRequiredMixin, DetailView):
+    template_name = 'main_app/pertandingan_detail.html'
+    model = Pertandingan
+
+
+class DaftarPertandinganCreateView(LoginRequiredMixin, CreateView):
+    form_class = DaftarPertandinganForm
+    success_url = reverse_lazy('main-app:cabor')
+    template_name = 'main_app/daftarpertandingan_form.html'
+    model = PesertaPertandingan

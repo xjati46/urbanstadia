@@ -1,0 +1,26 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Daftar Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <h1>Daftar Pertandingan</h1>
+  <hr>
+  <h3>Olahraga - {{cabangolahraga}}</h3>
+  <ul>
+    {% for i in pertandingan_list %}
+      <li><a href="{% url 'main-app:pertandingan-detail' i.pk %}">{{i}}</a></li>
+    {% endfor %}
+  </ul>
+
+  <br>
+  <div>
+    <a href="{% url 'main-app:cabor' %}">
+    <i class='far fa-arrow-alt-circle-left'></i>
+      Kembali
+    </a>
+  </div>
+
+
+{% endblock content %}

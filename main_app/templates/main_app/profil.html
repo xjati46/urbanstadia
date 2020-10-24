@@ -6,6 +6,7 @@
 
 {% block content %}
   <h1>Halaman Profil</h1>
+  <hr>
   <table>
     <tr>
       <td>Nama Lengkap:</td>
@@ -16,15 +17,14 @@
       <td>{{user.userprofile.nama_panggilan}}</td>
     </tr>
   </table>
-  <h3>
-    <a
-      {% if user.userprofile.pk %}
-        href="{% url 'main-app:profile-update' user.userprofile.pk %}"
-      {% else %}
-        href="{% url 'main-app:profile-create' %}"
-      {% endif %}
-    >
-      Ubah Profil?
-    </a>
-  </h3>
+  <br>
+  <a class='btn btn-warning'
+    {% if user.userprofile.pk %}
+      href="{% url 'main-app:profile-update' user.userprofile.pk %}"
+    {% else %}
+      href="{% url 'main-app:profile-create' %}"
+    {% endif %}
+  >
+    Ubah Profil?
+  </a>
 {% endblock content %}

@@ -1,0 +1,39 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Detail Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <h1>{{pertandingan.nama_pertandingan}}</h1>
+  <hr>
+  <h4>Cabang Olahraga</h4>
+  <ul>
+    {% for i in pertandingan.cabor.all %}
+      <li>{{i}}</li>
+    {% endfor %}
+  </ul>
+  <h4>Kelas Pertandingan</h4>
+  <ul>
+    {% for i in pertandingan.kelas.all %}
+      <li>{{i}}</li>
+    {% endfor %}
+  </ul>
+
+
+
+  <br>
+  <div>
+    <a href="{% url 'main-app:cabor' %}">
+      <i class='far fa-arrow-alt-circle-left'></i>
+      Kembali
+    </a>
+    <a href="{% url 'main-app:daftarpertandingan-create' pertandingan.pk %}">
+      <button class='btn btn-success' type="button" name="button">
+        Daftar
+      </button>
+    </a>
+  </div>
+
+
+{% endblock content %}

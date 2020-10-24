@@ -6,9 +6,11 @@
 
 {% block content %}
 
-  <div>
-    <h1>Berhasil Logout</h1>
-    <a href="{% url 'login' %}"><h3>Kembali ke halaman utama?</h3></a>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 align=center>Berhasil Logout</h1>
+      <a href="{% url 'login' %}"><h3 align=center>Kembali ke halaman utama?</h3></a>
+    </div>
   </div>
 
 {% endblock content %}

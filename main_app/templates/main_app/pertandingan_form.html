@@ -5,9 +5,14 @@
 {% endblock title %}
 
 {% block content %}
-  <form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <input type="submit" value="Buat">
-  </form>
+  <h1>Membuat Pertandingan Baru</h1>
+  <hr>
+  <div class="mt-2">
+    <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" value="Buat">
+    </form>
+  </div>
+
 {% endblock content %}

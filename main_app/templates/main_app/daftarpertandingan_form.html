@@ -1,0 +1,18 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Daftar Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <h1>Daftar Pertandingan</h1>
+  <hr>
+  <div class="mt-2">
+    <form method="post">
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" value="Daftar">
+    </form>
+  </div>
+
+{% endblock content %}

@@ -1,0 +1,23 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}
+  <title>Beranda Pertandingan | Urban Stadia</title>
+{% endblock title %}
+
+{% block content %}
+  <h1>Beranda Pertandingan</h1>
+  <hr>
+  <ul>
+    {% for i in user.userprofile.cabor_favorit.all %}
+      <li><a href="{% url 'main-app:cabor-detail' i.pk %}">{{i}}</a></li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'main-app:pertandingan-create' %}">
+    <button class='btn btn-primary' type="button" name="button">
+      Buat Pertandingan
+    </button>
+  </a>
+
+
+{% endblock content %}
